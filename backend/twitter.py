@@ -2,7 +2,7 @@ import tweepy
 from tweepy import OAuthHandler
 import re
 import json
-from backend import summarizer
+import summarizer
 import nltk
 
 
@@ -53,7 +53,7 @@ def getTimeline(screen_name):
         ret_tweet['error'] ='Error, please enter valied screen name'
         all_tweets.append(ret_tweet)
 
-    print(all_tweets)
+    #print(all_tweets)
     json_data = json.dumps(all_tweets, ensure_ascii=False)
     return json_data
 
