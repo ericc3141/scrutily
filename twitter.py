@@ -18,6 +18,7 @@ def getTimeline(screen_name):
     auth=authenticate(API_KEY,API_SECRET,ACCESS_TOKEN,ACCESS_TOKEN_SECRET)
     api = tweepy.API(auth, wait_on_rate_limit=True)
     new_tweets = api.user_timeline(screen_name=screen_name,count = 80,result_type='recent')
+    all_tweets = []
     for tweet in new_tweets:
         created_at = str(tweet.created_at).split(' ')
         date = created_at[0].split('-')
@@ -39,11 +40,15 @@ def getTimeline(screen_name):
         ret_tweet['truth_score'] = 0.5
         ret_tweet['about'] = re.sub(r'http\S+', '', tweet.text).split(' ')[0]
         ret_tweet['create_at'] = create_at
+        all_tweets.append(ret_tweet)
 
-        json_data = json.dumps(ret_tweet,ensure_ascii=False)
-        print(json_data)
+        #print(json_data)
+    json_data = json.dumps(all_tweets, ensure_ascii=False)
+    return json_data
+
 
 
 if __name__== "__main__":
     screen_name = '@BillGates'
-    getTimeline(screen_name)
+    json_data = getTimeline(screen_name)
+    print(json_data)
