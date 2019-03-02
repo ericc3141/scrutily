@@ -2,7 +2,7 @@ import tweepy
 from tweepy import OAuthHandler
 import re
 import json
-import summarizer
+from backend import summarizer
 import nltk
 
 
@@ -21,9 +21,10 @@ def getTimeline(screen_name):
 
     auth=authenticate(API_KEY,API_SECRET,ACCESS_TOKEN,ACCESS_TOKEN_SECRET)
     api = tweepy.API(auth, wait_on_rate_limit=True)
+    all_tweets = []
     try:
         new_tweets = api.user_timeline(screen_name=screen_name,count = 80,result_type='recent',tweet_mode='extended')
-        all_tweets = []
+
         for tweet in new_tweets:
             created_at = str(tweet.created_at).split(' ')
             date = created_at[0].split('-')
@@ -48,7 +49,9 @@ def getTimeline(screen_name):
             ret_tweet['create_at'] = create_at
             all_tweets.append(ret_tweet)
     except Exception:
-        all_tweets.append([{'error':'Error, please enter valied screen name'}])
+        ret_tweet = {}
+        ret_tweet['error'] ='Error, please enter valied screen name'
+        all_tweets.append(ret_tweet)
 
     print(all_tweets)
     json_data = json.dumps(all_tweets, ensure_ascii=False)
@@ -57,5 +60,5 @@ def getTimeline(screen_name):
 
 
 if __name__== "__main__":
-    screen_name = '@BillGates1'
+    screen_name = '@BillGates'
     json_data = getTimeline(screen_name)
