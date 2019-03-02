@@ -1,4 +1,4 @@
-import twitter
+from backend import twitter
 import time
 from http.server import SimpleHTTPRequestHandler, HTTPServer
 
