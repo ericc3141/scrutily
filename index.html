@@ -15,11 +15,27 @@
 </head>
 <body>
     <div class="overall-layout">
+
         <!-- we display the name of the twitter user
             here from whom we get our tweets-->
         <div class="username">
             <h2>@Some-Twitter-Username</h2>
         </div>
+
+        <!-- our search bar where we can enter the name
+            of a twitter user we want to read tweets from
+            note: when there was no search performed yet, we
+            should have a default value (e.g. @Some-Twitter-User
+            or something more funny) -->
+        <div class="searchbar"><h2>
+            <form method="post" name="form" action="http://www.somedomain-or-localhost.com" enctype="multipart/form-data">
+                <!-- text input field -->
+                <input type="text">
+                <!-- search button -->
+                <button type="submit" value="submit"><h3>search me!</h3></button>
+            </form>
+        </div>
+
         <!-- this is where we put our fancy color
         tiles with all the js stuff-->
         <div class="tile-grid">
@@ -33,6 +49,17 @@
             <div class="tile"><p>Some Tweet</p></div>
             <div class="tile"><p>Some Tweet</p></div>            
             <div class="tile"><p>Some Tweet</p></div>
+
+            <!-- we maintain a fixed whitespace
+            to the bottom of the page-->
+            <div class="bottom-whitespace">
+            </div>
+
+            <!-- some information about us :) -->
+        <div class="footer">
+            <p>proudly produced at HackTech 2019 by Eric, Fabian, Tejaswini and Vinuta :)</p>
+        </div>
+
         </div>
     </div>
 </body>

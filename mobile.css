@@ -14,36 +14,13 @@ row 1: whitespace to top of site
 row 2: for username
 row 3: whitespace to tile grid
 row 4: tile grid
+row 5: whitespace to bottom
 */
 .overall-layout {
-    height: 100%;
-    display: grid;
-    grid-template-columns: 10% 80% 10%;
-    grid-template-rows: 10% 10% 20% 60;
-  }
-  
-  .username {
-   grid-column-start: 2;
-   grid-column-end: 3;
-   grid-row-start: 2;
-   grid-row-end: 2;
-  }
-  
-  .tile-grid {
-    display: grid;
-    overflow: hidden;
-    grid-template-columns: repeat(auto-fit, 100px);
-    grid-column-start: 2;
-    grid-column-end: 2;
-    grid-row-start: 4;
-    grid-row-end: 5;
-    grid-gap: 15px;
-   
-  }
-  
-  .tile {
-    height: 100px;
-    width: 100px;
+    grid-template-columns: 5% 90% 5%;
   }
 
+  .footer {
+    min-width: 400px;
+  }
   

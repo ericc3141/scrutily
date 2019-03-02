@@ -44,6 +44,67 @@ p {
   line-height: 1.2;
 }
 
+/* DIV LAYOUT PROPERTIES (GRID POSITIONING) */
+
+/*
+-- COLUMNS --
+column 1: whitespace left
+column 2: content
+column 3: whitespace right
+-- ROWS --
+row 1: whitespace to top of site
+row 2: for searchbar
+row 3: for username
+row 4: whitespace to tile grid
+row 5: tile grid
+*/
+.overall-layout {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  position: absolute;
+  grid-template-rows: 10% 10% 10% 10% 60%;
+}
+
+.username {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 3;
+  min-height: 50px;
+ }
+
+ .searchbar {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 2;
+  background-color: red;
+ }
+ 
+ .tile-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, 150px);
+   grid-template-rows: repeat(auto-fit, 150px);
+   grid-gap: 15px;
+   grid-column-start: 2;
+   grid-column-end: 2;
+   grid-row-start: 5;
+   grid-row-end: 5;
+ }
+ 
+ .tile {
+   height: 150px;
+   width: 150px;
+ }
+
+.bottom-whitespace {
+  height: 300px;
+}
+
+.footer {
+  grid-column-start: 1;
+}
 
 
 /* layout-test with borders */
@@ -63,52 +124,37 @@ a {
 
 
 
+
 /* styling of input form */
-/*
-input[type=text] {
-  padding: 4px;
-  margin: 1vh 0;
-  width: 96%;
-  min-width: 10em;
-  background-color: black;
-  color: white;
-  border: none;
-  font-family: "Lucida Console", "Courier New", monospace;
-  font-size: 12px;
+
+.searchbar {
+  padding: 0px;
+  margin: 0px;
 }
 
-textarea {
+input[type=text] {
   padding: 4px;
-  margin: 1vh 0;
-  width: 96%;
-  height: 7em;
+  width: 100%;
   min-width: 10em;
   background-color: black;
   color: white;
   border: none;
-  font-family: "Lucida Console", "Courier New", monospace;
-  font-size: 12px;
-  resize: none;
+  border-radius: 25px;
+  font-size: 24px;
 }
 
 button {
-  padding: 4px 6px;
-  margin: 1vh 0 0 0;
   background-color: black;
   color: white;
   border: none;
-  font-family: "Lucida Console", "Courier New", monospace;
+  border-radius: 25px;
   font-size: 12px;
   cursor: pointer;
 }
 
-fieldset {
-  width: 40%;
-  min-width: 15em;
-  margin: 0;
-  padding: 0;
-  border: none;
-}
+
+
+/*
 
 ::-webkit-input-placeholder {
   color: white;
