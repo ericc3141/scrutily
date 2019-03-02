@@ -33,12 +33,12 @@ def getTimeline(screen_name):
             # print(time[0],time[1],time[2])
             #print(re.sub(r'http\S+', '', tweet.full_text),tweet.created_at,tweet.user.screen_name,)
             create_at = {}
-            create_at['yyyy'] = date[0]
-            create_at['mm'] = date[1]
-            create_at['dd'] = date[2]
-            create_at['hh'] = time[0]
-            create_at['min'] = time[1]
-            create_at['ss'] = time[2]
+            create_at['yyyy'] = int(date[0])
+            create_at['mm'] = int(date[1])
+            create_at['dd'] = int(date[2])
+            create_at['hh'] = int(time[0])
+            create_at['min'] = int(time[1])
+            create_at['ss'] = int(time[2])
 
             ret_tweet = {}
             ret_tweet['text'] = text
