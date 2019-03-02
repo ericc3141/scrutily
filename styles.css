@@ -76,6 +76,16 @@ row 5: white space to bottom of site
   grid-template-columns: 30% 40% 30%;
   grid-template-rows: 10% 10% 20% 50% 10%;
 }
+@media (max-width: 660px) {
+    .overall-layout {
+        grid-template-columns: 10% 80% 10%;
+    }
+}
+@media (max-width: 800px) {
+    .overall-layout {
+        grid-template-columns: 15% 70% 15%;
+    }
+}
 
 .username {
  grid-column-start: 2;
