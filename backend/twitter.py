@@ -21,39 +21,41 @@ def getTimeline(screen_name):
 
     auth=authenticate(API_KEY,API_SECRET,ACCESS_TOKEN,ACCESS_TOKEN_SECRET)
     api = tweepy.API(auth, wait_on_rate_limit=True)
-    new_tweets = api.user_timeline(screen_name=screen_name,count = 80,result_type='recent',tweet_mode='extended')
-    all_tweets = []
-    for tweet in new_tweets:
-        created_at = str(tweet.created_at).split(' ')
-        date = created_at[0].split('-')
-        time = created_at[1].split(':')
-        text =  re.sub(r'http\S+', '', tweet.full_text)
-        # print(date[0] , date[1] , date[2])
-        # print(time[0],time[1],time[2])
-        #print(re.sub(r'http\S+', '', tweet.full_text),tweet.created_at,tweet.user.screen_name,)
-        create_at = {}
-        create_at['yyyy'] = date[0]
-        create_at['mm'] = date[1]
-        create_at['dd'] = date[2]
-        create_at['hh'] = time[0]
-        create_at['mm'] = time[1]
-        create_at['ss'] = time[2]
+    try:
+        new_tweets = api.user_timeline(screen_name=screen_name,count = 80,result_type='recent',tweet_mode='extended')
+        all_tweets = []
+        for tweet in new_tweets:
+            created_at = str(tweet.created_at).split(' ')
+            date = created_at[0].split('-')
+            time = created_at[1].split(':')
+            text =  re.sub(r'http\S+', '', tweet.full_text)
+            # print(date[0] , date[1] , date[2])
+            # print(time[0],time[1],time[2])
+            #print(re.sub(r'http\S+', '', tweet.full_text),tweet.created_at,tweet.user.screen_name,)
+            create_at = {}
+            create_at['yyyy'] = date[0]
+            create_at['mm'] = date[1]
+            create_at['dd'] = date[2]
+            create_at['hh'] = time[0]
+            create_at['min'] = time[1]
+            create_at['ss'] = time[2]
 
-        ret_tweet = {}
-        ret_tweet['text'] = text
-        ret_tweet['user_name'] = tweet.user.screen_name
-        ret_tweet['truth_score'] = 0.5
-        ret_tweet['about'] = summarizer.summary(text)
-        ret_tweet['create_at'] = create_at
-        all_tweets.append(ret_tweet)
+            ret_tweet = {}
+            ret_tweet['text'] = text
+            ret_tweet['user_name'] = tweet.user.screen_name
+            ret_tweet['truth_score'] = 0.5
+            ret_tweet['about'] = summarizer.summary(text)
+            ret_tweet['create_at'] = create_at
+            all_tweets.append(ret_tweet)
+    except Exception:
+        all_tweets.append([{'error':'Error, please enter valied screen name'}])
 
-        #print(ret_tweet)
+    print(all_tweets)
     json_data = json.dumps(all_tweets, ensure_ascii=False)
     return json_data
 
 
 
 if __name__== "__main__":
-    screen_name = '@BillGates'
+    screen_name = '@BillGates1'
     json_data = getTimeline(screen_name)
-    #print(json_data)
