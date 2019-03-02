@@ -1,0 +1,13 @@
+TODO WEB DEV
+------------
+
+index.html
+-> grid div with individual elements for boxes (holding tweets)
+-> search bar
+-> name of twitter user
+-> layout divs
+
+styles.css
+-> font (which?)
+-> colors
+-> grid
