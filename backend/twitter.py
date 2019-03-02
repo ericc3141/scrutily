@@ -2,7 +2,7 @@ import tweepy
 from tweepy import OAuthHandler
 import re
 import json
-from backend import summarizer
+import summarizer
 import nltk
 
 

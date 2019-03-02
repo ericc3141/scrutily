@@ -1,6 +1,7 @@
-from backend import twitter
+import twitter
 import time
 from http.server import SimpleHTTPRequestHandler, HTTPServer
+import urllib.parse as urlparse
 
 HOST_NAME = 'localhost'
 PORT_NUMBER = 8888
@@ -13,8 +14,10 @@ class MyHandler(SimpleHTTPRequestHandler):
 
     # Check the URI of the request to serve the proper content.
     def do_GET(self):
-        if "URLToTriggerGetRequestHandler" in self.path:
-            content = twitter.getTimeline()
+        parsed = urlparse.urlparse(self.path)
+        if (parsed.path == "/getTimeline"):
+            name = urlparse.parse_qs(parsed.query)["name"][0]
+            content = twitter.getTimeline(name)
             self.respond(content)
         else:
             super(MyHandler, self).do_GET()  # serves the static src file by default
