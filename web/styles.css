@@ -16,6 +16,7 @@ body {
   width: 100%;
   margin: 0;
   font-family: "Helvetica", "Arial", sans-serif;
+  text-align: center;
 }
 
 /* header info:
@@ -61,31 +62,8 @@ row 6: tile grid
 */
 .overall-layout {
   height: 100%;
-  display: flex;
-  flex-direction: column;
 }
 
-.pagetitle {
-  text-align: center;
-  padding-top: 2vh;
-  padding-bottom: 2vh;
-  min-height: 50px;
-}
-
-.username {
-  padding-top: 1vh;
-  padding-bottom: 2vh;
-  text-align: center;
-  min-height: 50px;
- }
-
- /* searchbar div with textfield + button */
- .searchbar {
-  display: flex;
-  padding-bottom: 3vh;
-  text-align: center;
-  justify-content: center;
- }
 
  /* text input field */
 input[type=text] {
@@ -120,59 +98,11 @@ button {
  
  .tile {
    flex: 1;
-   align-items: center;
-   text-align: center;
    background-color: rgb(54, 153, 134);
    min-height: 150px;
    min-width: 150px;
    max-height: 150px;
    max-width: 150px;
-   margin: 10px;
-   border-radius: 25px;
+   margin: .2em;
+   border-radius: .2em;
  }
-
-.footer {
-  padding-top: 5vw;
-  text-align: center;
-}
-
-
-/* layout-test with borders */
-/*
-.overall-layout > div {
-  border: 1px solid black;
-} 
-.tile-grid > div {
-  border: 1px solid black;
-} 
-*/
-
-
-a {
-  outline: 0;
-  border: 0;
-}
-
-
-
-
-/* styling of input form */
-
-
-
-/*
-
-::-webkit-input-placeholder {
-  color: white;
-}
-:-moz-placeholder { /* Firefox 18- 
-  color: white;
-  opacity: 1;
-}
-::-moz-placeholder {  /* Firefox 19+ 
-  color: white;
-  opacity: 1;
-}
-:-ms-input-placeholder {  
-  color: white;  
-}
