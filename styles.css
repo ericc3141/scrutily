@@ -1,0 +1,174 @@
+/* basics */
+
+@font-face {
+  font-family: 'Helvetica';
+  src: url(fonts/Helvetica.woff) format('woff');
+  src: url(fonts/Helvetica.ttf) format('truetype');
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: "Helvetica", "Arial", sans-serif;
+}
+
+/* header info:
+  h1 = big header (maybe title of webpage
+  h2 = sub-header (twitter user-name)
+  h3 = sub-sub-header (twitter words in tiles)
+*/
+
+h1 {
+  font-size: 36px;
+  font-weight: normal;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: normal;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: normal;
+}
+
+p {
+  font-size: 14px;
+  max-width: 450px;
+  line-height: 1.2;
+}
+
+
+
+/* layout-test with borders */
+.overall-layout > div {
+  border: 1px solid black;
+} 
+.tile-grid > div {
+  border: 1px solid black;
+} 
+
+
+/* layout desktop */
+
+/*
+-- COLUMNS --
+column 1: whitespace left
+column 2: content
+column 3: whitespace right
+-- ROWS --
+row 1: whitespace to top of site
+row 2: for username
+row 3: whitespace to tile grid
+row 4: tile grid
+row 5: white space to bottom of site
+*/
+.overall-layout {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
+  grid-template-rows: 10% 10% 20% 50% 10%;
+}
+
+.username {
+ grid-column-start: 2;
+ grid-column-end: 3;
+ grid-row-start: 2;
+ grid-row-end: 2;
+}
+
+.tile-grid {
+  display: grid;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 4;
+  grid-row-end: 4;
+  grid-gap: 15px;
+  grid-template-columns: repeat(auto-fit, 150px);
+}
+
+.tile {
+  height: 150px;
+  width: 150px;
+}
+
+
+
+
+
+
+a {
+  outline: 0;
+  border: 0;
+}
+
+
+
+/* styling of input form */
+/*
+input[type=text] {
+  padding: 4px;
+  margin: 1vh 0;
+  width: 96%;
+  min-width: 10em;
+  background-color: black;
+  color: white;
+  border: none;
+  font-family: "Lucida Console", "Courier New", monospace;
+  font-size: 12px;
+}
+
+textarea {
+  padding: 4px;
+  margin: 1vh 0;
+  width: 96%;
+  height: 7em;
+  min-width: 10em;
+  background-color: black;
+  color: white;
+  border: none;
+  font-family: "Lucida Console", "Courier New", monospace;
+  font-size: 12px;
+  resize: none;
+}
+
+button {
+  padding: 4px 6px;
+  margin: 1vh 0 0 0;
+  background-color: black;
+  color: white;
+  border: none;
+  font-family: "Lucida Console", "Courier New", monospace;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+fieldset {
+  width: 40%;
+  min-width: 15em;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+::-webkit-input-placeholder {
+  color: white;
+}
+:-moz-placeholder { /* Firefox 18- 
+  color: white;
+  opacity: 1;
+}
+::-moz-placeholder {  /* Firefox 19+ 
+  color: white;
+  opacity: 1;
+}
+:-ms-input-placeholder {  
+  color: white;  
+}
