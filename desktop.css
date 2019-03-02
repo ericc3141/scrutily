@@ -1,0 +1,50 @@
+/* mobile css */
+/* different from desktop css */
+
+/* font sizes ? */
+
+
+/*
+-- COLUMNS --
+column 1: whitespace left
+column 2: content
+column 3: whitespace right
+-- ROWS --
+row 1: whitespace to top of site
+row 2: for username
+row 3: whitespace to tile grid
+row 4: tile grid
+*/
+.overall-layout {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    grid-template-rows: 10% 10% 20% 60%;
+  }
+  
+  .username {
+   grid-column-start: 2;
+   grid-column-end: 3;
+   grid-row-start: 2;
+   grid-row-end: 2;
+  }
+  
+  .tile-grid {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 150px);
+    overflow: hidden;
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 4;
+    grid-row-end: 5;
+    grid-gap: 15px;
+  }
+  
+  .tile {
+    height: 150px;
+    width: 150px;
+  }
+
+  
