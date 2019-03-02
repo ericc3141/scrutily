@@ -1,0 +1,30 @@
+{"tweets":[
+    {
+        "text": "tweet text",
+        "user_name": "name",
+   "truth_score": 0.57,
+   "about": "two word des",
+   "created_at":"Thu Apr 06 15:24:15 +0000 2017"
+    },
+ {
+        "text": "tweet text",
+        "user_name": "name",
+   "truth_score": 0.57,
+   "about": "two word des",
+   "created_at":"Thu Apr 06 15:24:15 +0000 2017"
+    },
+ {
+        "text": "tweet text",
+        "user_name": "name",
+   "truth_score": 0.57,
+   "about": "two word des",
+   "created_at":"Thu Apr 06 15:24:15 +0000 2017"
+    },
+ {
+        "text": "tweet text",
+        "user_name": "name",
+   "truth_score": 0.57,
+   "about": "two word des",
+   "created_at":"Thu Apr 06 15:24:15 +0000 2017"
+    }
+]}

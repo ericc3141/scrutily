@@ -11,6 +11,7 @@
     <link rel="stylesheet" media="screen and (max-width: 800px)" href="mobile.css">
     <!-- loads favicon-->
     <!--<link rel="shortcut icon" href="Favicon Link eingeben">-->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="main.js"></script>
 </head>
 <body>
@@ -28,7 +29,7 @@
             should have a default value (e.g. @Some-Twitter-User
             or something more funny) -->
         <div class="searchbar"><h2>
-            <form method="post" name="form" action="http://www.somedomain-or-localhost.com" enctype="multipart/form-data">
+            <form method="post" id="user-form" action="javascript:void(0);">
                 <!-- text input field -->
                 <input type="text">
                 <!-- search button -->
