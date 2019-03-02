@@ -61,46 +61,36 @@ row 6: tile grid
 */
 .overall-layout {
   height: 100%;
-  width: 100%;
-  display: grid;
-  position: absolute;
-  grid-template-rows: 5% 10% 15% 5% 10% 55%;
+  display: flex;
+  flex-direction: column;
 }
 
 .pagetitle {
   text-align: center;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 2;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
   min-height: 50px;
 }
 
 .username {
+  padding-top: 1vh;
+  padding-bottom: 2vh;
   text-align: center;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 4;
-  grid-row-end: 4;
   min-height: 50px;
  }
 
  /* searchbar div with textfield + button */
  .searchbar {
+  display: flex;
+  padding-bottom: 3vh;
   text-align: center;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 3;
-  grid-row-end: 3;
+  justify-content: center;
  }
 
  /* text input field */
 input[type=text] {
   text-align: center;
   padding: 4px;
-  margin-bottom: 10px;
-  width: 100%;
-  min-width: 10em;
   background-color: rgb(54, 153, 134);
   color: white;
   border: none;
@@ -108,7 +98,7 @@ input[type=text] {
   font-size: 24px;
 }
 
-/* search button */
+/* search button 
 button {
   text-align: center;
   background-color: rgb(54, 153, 134);;
@@ -118,35 +108,32 @@ button {
   font-size: 12px;
   cursor: pointer;
 }
+*/
  
  .tile-grid {
-   display: grid;
-   min-width: 100%;
-   grid-template-columns: repeat(auto-fit, 150px);
-   grid-template-rows: repeat(auto-fit, 150px);
-   margin: auto;
-   grid-gap: 2vw;
-   grid-column-start: 2;
-   grid-column-end: 3;
-   grid-row-start: 6;
-   grid-row-end: 6;
+   display: flex;
+   flex-wrap: wrap;
+   text-align: center;
+   justify-content: center;
+   width: 100%;
  }
  
  .tile {
+   flex: 1;
    align-items: center;
    text-align: center;
    background-color: rgb(54, 153, 134);
-   height: 150px;
-   width: 150px;
+   min-height: 150px;
+   min-width: 150px;
+   max-height: 150px;
+   max-width: 150px;
+   margin: 10px;
    border-radius: 25px;
  }
 
-.bottom-whitespace {
-  height: 300px;
-}
-
 .footer {
-  grid-column-start: 1;
+  padding-top: 5vw;
+  text-align: center;
 }
 
 

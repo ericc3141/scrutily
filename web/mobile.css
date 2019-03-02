@@ -17,10 +17,16 @@ row 4: tile grid
 row 5: whitespace to bottom
 */
 .overall-layout {
-    grid-template-columns: 5% 90% 5%;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
   }
 
-  .footer {
+.footer {
     min-width: 400px;
   }
   
+input[type=text] {
+    width: 50vw;
+    min-width: 200px;
+  }
