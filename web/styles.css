@@ -53,25 +53,35 @@ column 2: content
 column 3: whitespace right
 -- ROWS --
 row 1: whitespace to top of site
-row 2: for searchbar
-row 3: for username
-row 4: whitespace to tile grid
-row 5: tile grid
+row 2: page title
+row 3: for searchbar
+row 4: for username
+row 5: whitespace to tile grid
+row 6: tile grid
 */
 .overall-layout {
   height: 100%;
   width: 100%;
   display: grid;
   position: absolute;
-  grid-template-rows: 10% 15% 10% 10% 55%;
+  grid-template-rows: 5% 10% 15% 5% 10% 55%;
+}
+
+.pagetitle {
+  text-align: center;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 2;
+  min-height: 50px;
 }
 
 .username {
   text-align: center;
   grid-column-start: 2;
   grid-column-end: 3;
-  grid-row-start: 3;
-  grid-row-end: 3;
+  grid-row-start: 4;
+  grid-row-end: 4;
   min-height: 50px;
  }
 
@@ -80,9 +90,8 @@ row 5: tile grid
   text-align: center;
   grid-column-start: 2;
   grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 2;
-  background-color: red;
+  grid-row-start: 3;
+  grid-row-end: 3;
  }
 
  /* text input field */
@@ -92,7 +101,7 @@ input[type=text] {
   margin-bottom: 10px;
   width: 100%;
   min-width: 10em;
-  background-color: blue;
+  background-color: rgb(54, 153, 134);
   color: white;
   border: none;
   border-radius: 25px;
@@ -102,7 +111,7 @@ input[type=text] {
 /* search button */
 button {
   text-align: center;
-  background-color: green;
+  background-color: rgb(54, 153, 134);;
   color: white;
   border: none;
   border-radius: 25px;
@@ -112,18 +121,21 @@ button {
  
  .tile-grid {
    display: grid;
-   text-align: center;
+   min-width: 100%;
    grid-template-columns: repeat(auto-fit, 150px);
    grid-template-rows: repeat(auto-fit, 150px);
-   grid-gap: 15px;
+   margin: auto;
+   grid-gap: 2vw;
    grid-column-start: 2;
-   grid-column-end: 2;
-   grid-row-start: 5;
-   grid-row-end: 5;
+   grid-column-end: 3;
+   grid-row-start: 6;
+   grid-row-end: 6;
  }
  
  .tile {
+   align-items: center;
    text-align: center;
+   background-color: rgb(54, 153, 134);
    height: 150px;
    width: 150px;
    border-radius: 25px;
@@ -139,13 +151,14 @@ button {
 
 
 /* layout-test with borders */
+/*
 .overall-layout > div {
   border: 1px solid black;
 } 
 .tile-grid > div {
   border: 1px solid black;
 } 
-
+*/
 
 
 a {

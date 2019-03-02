@@ -1,5 +1,10 @@
 "use strict";
 
+const BACKEND = "http://localhost:8888";
+
+function stagger(total) {
+    return (d,i) => {return total/(i+1);};
+}
 
 // https://stackoverflow.com/questions/10692100/invoke-a-callback-at-the-end-of-a-transition
  function endall(transition, callback) { 
@@ -21,15 +26,19 @@ function clear(data) {
         .remove();
 }
 function update(data) {
-    console.log(data.tweets);
-    d3.select(".tile-grid").selectAll(".tile").data(data.tweets)
+    console.log(data);
+    d3.select(".tile-grid").selectAll(".tile").data(data)
     .enter().append("div")
-    .text((d) => {return d.text});
+    .attr("class", "tile")
+    .text((d) => {return d.text})
+    .style("opacity", 1e-6)
+    .transition().duration(100).delay(stagger(1000))
+    .style("opacity", 1);
 }
 
 function fetchnew(e) {
-    console.log("Username: ", e.srcElement[0].value);
-    d3.json("/data.json").then(clear);
+    let name = e.srcElement[0].value;
+    d3.json(BACKEND + "/getTimeline?name=" + name).then(clear);
 }
 
 function init() {
