@@ -63,10 +63,11 @@ row 5: tile grid
   width: 100%;
   display: grid;
   position: absolute;
-  grid-template-rows: 10% 10% 10% 10% 60%;
+  grid-template-rows: 10% 15% 10% 10% 55%;
 }
 
 .username {
+  text-align: center;
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 3;
@@ -74,16 +75,44 @@ row 5: tile grid
   min-height: 50px;
  }
 
+ /* searchbar div with textfield + button */
  .searchbar {
+  text-align: center;
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 2;
   grid-row-end: 2;
   background-color: red;
  }
+
+ /* text input field */
+input[type=text] {
+  text-align: center;
+  padding: 4px;
+  margin-bottom: 10px;
+  width: 100%;
+  min-width: 10em;
+  background-color: blue;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 24px;
+}
+
+/* search button */
+button {
+  text-align: center;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 12px;
+  cursor: pointer;
+}
  
  .tile-grid {
    display: grid;
+   text-align: center;
    grid-template-columns: repeat(auto-fit, 150px);
    grid-template-rows: repeat(auto-fit, 150px);
    grid-gap: 15px;
@@ -94,8 +123,10 @@ row 5: tile grid
  }
  
  .tile {
+   text-align: center;
    height: 150px;
    width: 150px;
+   border-radius: 25px;
  }
 
 .bottom-whitespace {
@@ -126,31 +157,6 @@ a {
 
 
 /* styling of input form */
-
-.searchbar {
-  padding: 0px;
-  margin: 0px;
-}
-
-input[type=text] {
-  padding: 4px;
-  width: 100%;
-  min-width: 10em;
-  background-color: black;
-  color: white;
-  border: none;
-  border-radius: 25px;
-  font-size: 24px;
-}
-
-button {
-  background-color: black;
-  color: white;
-  border: none;
-  border-radius: 25px;
-  font-size: 12px;
-  cursor: pointer;
-}
 
 
 
