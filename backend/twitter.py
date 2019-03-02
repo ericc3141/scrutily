@@ -2,7 +2,7 @@ import tweepy
 from tweepy import OAuthHandler
 import re
 import json
-from backend import summarizer
+import summarizer
 import nltk
 
 
@@ -48,6 +48,7 @@ def getTimeline(screen_name):
             ret_tweet['about'] = summarizer.summary(text)
             ret_tweet['create_at'] = create_at
             all_tweets.append(ret_tweet)
+            print("'"+text+"',")
     except Exception:
         ret_tweet = {}
         ret_tweet['error'] ='Error, please enter valied screen name'
@@ -61,4 +62,4 @@ def getTimeline(screen_name):
 
 if __name__== "__main__":
     screen_name = '@BillGates'
-    json_data = getTimeline(screen_name)
+    json_data = getTimeline(screen_name.strip())
