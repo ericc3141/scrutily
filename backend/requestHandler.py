@@ -13,8 +13,9 @@ class MyHandler(SimpleHTTPRequestHandler):
 
     # Check the URI of the request to serve the proper content.
     def do_GET(self):
-        if "URLToTriggerGetRequestHandler" in self.path:
+        if "GetTimeline" in self.path:
             content = twitter.getTimeline()
+            print(content)
             self.respond(content)
         else:
             super(MyHandler, self).do_GET()  # serves the static src file by default
