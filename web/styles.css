@@ -14,7 +14,7 @@ html {
 body {
   height: 100%;
   width: 100%;
-  margin: 0;
+  margin: 0px;
   font-family: "Helvetica", "Arial", sans-serif;
 }
 
@@ -46,6 +46,8 @@ h3 {
 p {
   font-size: 14px;
 }
+
+
 
 /* DIV LAYOUT PROPERTIES (GRID POSITIONING) */
 
@@ -116,7 +118,44 @@ button {
    left: 0;
    height: 1em;
    border-radius: 0.5em;
+   overflow: hidden;
  }
+
+/* tile information display */
+
+ .content {
+  visibility: hidden;
+  margin: 0px;
+  padding: 0px 0px 0px 2em;
+}
+
+.about {
+  visibility: hidden;
+  font-weight: bold;
+  margin: 0px;
+  padding: 0px 0px 0px 2em;
+}
+
+.tile:hover .content, .clicked .content {
+  visibility: visible;
+}
+
+.tile:hover .about, .clicked .about {
+  visibility: visible;
+}
+
+.clicked {
+  height: 75px;
+  z-index: 99;
+}
+
+.tile > p {
+  color: white;
+}
+
+.tile:hover, .clicked {
+  z-index: 99;
+}
 
 .footer {
   display: flex;
