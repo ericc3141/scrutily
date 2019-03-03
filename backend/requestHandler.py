@@ -5,7 +5,7 @@ import urllib.parse as urlparse
 import os
 
 HOST_NAME = '0.0.0.0'
-PORT_NUMBER = os.environ["PORT"] or 8888 
+PORT_NUMBER = int(os.environ["PORT"]) or 8888 
 
 class MyHandler(SimpleHTTPRequestHandler):
     def do_HEAD(self):
