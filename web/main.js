@@ -97,10 +97,10 @@ function update(data) {
     .style("background-color", (d,i) => {return colorScale(d.truth_score);})
     .on("click", toggleclick)
     .transition().duration(TRANS_LEN).delay(stagger(TRANS_DELAY))
-    .style("opacity", 1);
+    .style("opacity", 0.3);
 
     tiles.append("p")
-    .text((d,i)=>{return d.about.join()})
+    .text((d,i)=>{return d.about.join(", ")})
     .attr("class", "about");
 
     tiles.append("p")
@@ -111,7 +111,7 @@ function update(data) {
 function fetchnew(e) {
     console.log("fetch");
     d3.selectAll(".bubble").transition().duration(TRANS_LEN)
-    .style("background-color", colorScale(0.7));
+    .style("background-color", colorScale(0.3));
     let name = e.srcElement[0].value;
     document.title = name + " | Scrutily";
     let request = (name.slice(0,1) == "@") ? "/getTimeline?name=" : "/getHashTag?hashtag=";
