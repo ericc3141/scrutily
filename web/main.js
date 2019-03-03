@@ -1,10 +1,16 @@
 "use strict";
 
 const BACKEND = "http://localhost:8888";
+let EM_PER_DAY = 1;
 let colorScale = d3.scaleSequential(d3.interpolateYlGnBu);
+let timeScale = d3.scaleTime();
 
 function stagger(total) {
     return (d,i) => {return total/(i+1);};
+}
+function getDate(obj) {
+    let t = obj.create_at;
+    return new Date(t.yyyy, t.mm-1, t.dd, t.hh, t.min, t.ss);
 }
 
 function clear(data) {
@@ -16,15 +22,20 @@ function clear(data) {
 }
 function update(data) {
     console.log("update");
-    console.log(data);
+    window.data = data;
+
+    data.reverse();
+    let interval = [getDate(data[data.length-1]), getDate(data[0])]
+    timeScale.domain(interval).range([0, (interval[0]-interval[1])/(1000*60*60*24)*EM_PER_DAY]);
     colorScale.domain([0,data.length]);
+
     d3.select(".tile-grid").selectAll(".tile").data(data)
     .enter().append("div")
     .attr("class", "tile")
 //     .text((d) => {return d.about.join();})
     .style("opacity", 1e-6)
-    .style("width", (d,i) => {return d.text.length + "px";})
-    .style("top", (d,i) => {let time = d.create_at; return 100/24*time.hh + 100/24/60*time.min + "%";})
+    .style("width", (d,i) => {return d.text.length/280*100 + "%";})
+    .style("top", (d,i) => {return timeScale(getDate(d)) + "em";})
     .style("background-color", (d,i) => {return colorScale(i);})
     .transition().duration(500).delay(stagger(1000))
     .style("opacity", 1);
@@ -39,6 +50,9 @@ function fetchnew(e) {
 function init() {
     console.log("init");
     document.getElementById("user-form").addEventListener("submit", fetchnew);
+    document.getElementById("searchbar-text").addEventListener("click", (e) => {
+        e.target.value = "@";
+    });
 }
 
 window.addEventListener("load", init);
