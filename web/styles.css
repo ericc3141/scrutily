@@ -61,6 +61,13 @@ row 6: tile grid
 */
 .overall-layout {
   height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.overall-layout > div {
+  border: 1px solid black;
 }
 
 
@@ -86,16 +93,9 @@ button {
   cursor: pointer;
 }
 */
-
-.overall-layout {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
  
  .tile-grid {
    flex-grow: 1;
-   overflow: scroll;
    position: relative;
  }
  
@@ -106,3 +106,4 @@ button {
    height: 1em;
    border-radius: 0.5em;
  }
+
