@@ -1,14 +1,16 @@
 "use strict";
 
 const BACKEND = "http://localhost:8888";
+const TRANS_LEN = 500;
+const TRANS_DELAY = 10;
 let EM_PER_DAY = 10;
 let colorScale = d3.scaleSequential(d3.interpolateCubehelix("#85CCBE", "#FF94D2"));
 // let colorScale = d3.scaleSequential(d3.interpolateCubehelix("#369986", "#C985CC"));
 let timeScale = d3.scaleTime();
 let lastClicked;
 
-function stagger(total) {
-    return (d,i) => {return total/(i+1);};
+function stagger(delay) {
+    return (d,i) => {return i * delay;};
 }
 function getDate(obj) {
     let t = obj.create_at;
@@ -29,9 +31,8 @@ function clear(data) {
         update(data);
         return;
     }
-    setTimeout(()=>{update(data)}, 2000);
-    d3.selectAll(".tile")
-        .transition().duration(500).delay(stagger(1000))
+    setTimeout(()=>{update(data)}, tiles.size()*TRANS_DELAY+1000);
+    tiles.transition().duration(TRANS_LEN).delay(stagger(TRANS_DELAY))
         .style("opacity", 0)
         .remove();
 }
@@ -39,22 +40,22 @@ function update(data) {
     console.log("update");
     window.data = data;
 
-    data.reverse();
-    let interval = [getDate(data[data.length-1]), getDate(data[0])]
+    let interval = [getDate(data[0]), getDate(data[data.length-1])]
     timeScale.domain(interval).range([0, (interval[0]-interval[1])/(1000*60*60*24)*EM_PER_DAY]);
     colorScale.domain([0,data.length]);
 
     let divs = d3.select(".tile-grid").selectAll(".tile").data(data)
     .enter().append("div");
+    console.log(divs.size());
 
     divs.attr("class", "tile")
     .style("opacity", 1e-6)
-    .style("width", (d,i) => {return d.text.length/280*100 + "%";})
+    .style("width", (d,i) => {return d.text.length/280*95 + "%";})
     .style("top", (d,i) => {return timeScale(getDate(d)) + "em";})
     .style("background-color", (d,i) => {return colorScale(i);})
     .style("color", (d,i) => {return colorScale(i);})
     .on("click", toggleclick)
-    .transition().duration(500).delay(stagger(1000))
+    .transition().duration(TRANS_LEN).delay(stagger(TRANS_DELAY))
     .style("opacity", 1);
 
     divs.append("p")

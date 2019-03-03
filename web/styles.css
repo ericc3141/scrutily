@@ -107,6 +107,11 @@ button {
 }
 */
  
+ .wrapper {
+     flex-grow: 1;
+     overflow: auto;
+     margin-bottom: 5em;
+ }
  .tile-grid {
    flex-grow: 1;
    position: relative;
@@ -158,13 +163,7 @@ button {
 }
 
 .footer {
-  display: flex;
   background-color: rgb(54, 153, 134);
   color: white;
-  align-items: center;
-  border-radius: 0.5em;
-  height: 25px;
   margin-top: 2vh;
-  margin-bottom: 2vh;
-  padding-left: 1vw;
 }
