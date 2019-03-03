@@ -34,3 +34,22 @@ def summary(content):
             return(tokens)
     return nouns
 
+def hashtags(content):
+    content = re.sub(r'\b\w\b', ' ', content)
+    content = sanitize_input(content)
+    tokenized = content.split()
+    tags = []
+    for t in tokenized:
+        if t.startswith('#'):
+            tags.append(t)
+    if len(tags)>3:
+        return(random.sample(tags,3))
+    elif len(tags)>0:
+        return(tags)
+    elif len(tags)==0:
+        tags.append('#None')
+        return tags
+
+
+
+
