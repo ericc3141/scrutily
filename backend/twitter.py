@@ -75,7 +75,7 @@ def getTimeline(screen_name):
     ret_tweets['tweet_list'] = all_tweets
 
     json_data = json.dumps(ret_tweets, ensure_ascii=False)
-    print(json_data)
+    #print(json_data)
     return json_data
 
 
