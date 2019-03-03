@@ -14,6 +14,7 @@ def authenticate(consumer_key,consumer_secret,access_token,access_secret):
 def getTimeline(screen_name):
     nltk.download('punkt')
     nltk.download('averaged_perceptron_tagger')
+    nltk.download('stopwords')
     API_KEY='TNMofXHuNoktIyyO7QQzTKJgu'
     API_SECRET='NyS7y6U7cgILoqSufYLQnAjulZyO9vT8w2Thv7mP8CeFZNYNez'
     ACCESS_TOKEN='2281727036-Ibfs8wgTovMU6BRfTveDhjO5Z6d4rUZtXYbfEMd'
