@@ -69,7 +69,7 @@ function update(data) {
     let list = data.tweet_list;
     let interval = [getDate(list[0]), getDate(list[list.length-1])]
     maxheight = (interval[0]-interval[1])/(1000*60*60*24);
-    timeScale.domain(interval).range([0, maxheight*EM_PER_DAY]);
+    timeScale.domain(interval).range([4, maxheight*EM_PER_DAY]);
 
     let dates = d3.timeDays(interval[1], interval[0]);
     markers = d3.select(".tile-grid").selectAll(".time").data(dates)
@@ -113,6 +113,7 @@ function fetchnew(e) {
     d3.selectAll(".bubble").transition().duration(TRANS_LEN)
     .style("background-color", colorScale(0.7));
     let name = e.srcElement[0].value;
+    document.title = name + " | Scrutily";
     let request = (name.slice(0,1) == "@") ? "/getTimeline?name=" : "/getHashTag?hashtag=";
     Promise.all([
         d3.json(BACKEND + request + escape(name)),
