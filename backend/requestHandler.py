@@ -3,7 +3,7 @@ import time
 from http.server import SimpleHTTPRequestHandler, HTTPServer
 import urllib.parse as urlparse
 
-HOST_NAME = 'localhost'
+HOST_NAME = '0.0.0.0'
 PORT_NUMBER = 8888
 
 class MyHandler(SimpleHTTPRequestHandler):

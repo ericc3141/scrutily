@@ -2,8 +2,8 @@ import tweepy
 from tweepy import OAuthHandler
 import re
 import json
-from backend import summarizer
-from backend import truthfullness
+import summarizer
+import truthfullness
 import nltk
 import datetime
 

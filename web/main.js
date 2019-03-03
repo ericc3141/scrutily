@@ -1,6 +1,6 @@
 "use strict";
 
-const BACKEND = "http://localhost:8888";
+const BACKEND = "";
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 const TRANS_LEN = 500;
 const TRANS_DELAY = 10;
@@ -35,13 +35,12 @@ function toggleclick(d, i) {
     lastClicked = this;
 }
 
-function clear(data) {
+function clear(resolve) {
     let tiles = d3.selectAll(".tile");
     if (tiles.size() === 0) {
-        update(data);
-        return;
+        resolve();
     }
-    setTimeout(()=>{update(data)}, tiles.size()*TRANS_DELAY+1000);
+    setTimeout(resolve, tiles.size()*TRANS_DELAY+1000);
     tiles.transition().duration(TRANS_LEN).delay(stagger(TRANS_DELAY))
         .style("opacity", 0)
         .remove();
@@ -99,7 +98,10 @@ function update(data) {
 function fetchnew(e) {
     console.log("fetch");
     let name = e.srcElement[0].value;
-    d3.json(BACKEND + "/getTimeline?name=" + name).then(clear);
+    Promise.all([
+        d3.json(BACKEND + "/getTimeline?name=" + name),
+        new Promise(clear)
+    ]).then((d) => {update(d[0])});
 }
 
 function init() {
