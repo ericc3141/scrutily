@@ -2,7 +2,7 @@
 
 const BACKEND = "http://localhost:8888";
 let EM_PER_DAY = 1;
-let colorScale = d3.scaleSequential(d3.interpolateYlGnBu);
+let colorScale = d3.scaleSequential(d3.interpolateWarm);
 let timeScale = d3.scaleTime();
 
 function stagger(total) {
@@ -11,6 +11,10 @@ function stagger(total) {
 function getDate(obj) {
     let t = obj.create_at;
     return new Date(t.yyyy, t.mm-1, t.dd, t.hh, t.min, t.ss);
+}
+
+function toggleclick(d, i) {
+    this.classList.toggle("clicked");
 }
 
 function clear(data) {
@@ -29,16 +33,26 @@ function update(data) {
     timeScale.domain(interval).range([0, (interval[0]-interval[1])/(1000*60*60*24)*EM_PER_DAY]);
     colorScale.domain([0,data.length]);
 
-    d3.select(".tile-grid").selectAll(".tile").data(data)
-    .enter().append("div")
-    .attr("class", "tile")
-//     .text((d) => {return d.about.join();})
+    let divs = d3.select(".tile-grid").selectAll(".tile").data(data)
+    .enter().append("div");
+
+    divs.attr("class", "tile")
     .style("opacity", 1e-6)
     .style("width", (d,i) => {return d.text.length/280*100 + "%";})
     .style("top", (d,i) => {return timeScale(getDate(d)) + "em";})
     .style("background-color", (d,i) => {return colorScale(i);})
+    .style("color", (d,i) => {return colorScale(i);})
+    .on("click", toggleclick)
     .transition().duration(500).delay(stagger(1000))
     .style("opacity", 1);
+
+    divs.append("p")
+    .text((d,i)=>{return d.about.join()})
+    .attr("class", "about");
+
+    divs.append("p")
+    .text((d,i)=>{return d.text})
+    .attr("class", "content");
 }
 
 function fetchnew(e) {
