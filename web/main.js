@@ -10,7 +10,9 @@ let colorScale = d3.scaleSequential(d3.interpolateCubehelix("#FF9F90", "#D2FFAA"
 // pleasant green-red scale
 // let colorScale = d3.scaleSequential(d3.interpolateCubehelix("#FF9F90", "#D2FFAA")).domain([0.3,0.7]);
 let timeScale = d3.scaleTime();
-let lastClicked;
+let elems = [];
+let tiles, markers;
+let zoom, maxheight;
 
 function stagger(delay) {
     return (d,i) => {return i * delay;};
@@ -27,6 +29,16 @@ function getDate(obj) {
     return new Date(t.yyyy, t.mm-1, t.dd, t.hh, t.min, t.ss);
 }
 
+function zoomed() {
+//     console.log(d3.event);
+    if (!tiles) {
+        return;
+    }
+    timeScale.range([0, maxheight*EM_PER_DAY*d3.event.transform.k]);
+    tiles.style("top", (d,i) => {return timeScale(getDate(d)) + "em";});
+    markers.style("top", (d,i) => {return timeScale(d) + "em";});
+}
+
 function toggleclick(d, i) {
     if (lastClicked && lastClicked != this) {
         lastClicked.classList.remove("clicked");
@@ -36,8 +48,7 @@ function toggleclick(d, i) {
 }
 
 function clear(resolve) {
-    let tiles = d3.selectAll(".tile");
-    if (tiles.size() === 0) {
+    if (!tiles || tiles.size() === 0) {
         resolve();
     }
     setTimeout(resolve, tiles.size()*TRANS_DELAY+1000);
@@ -54,10 +65,11 @@ function update(data) {
 
     let list = data.tweet_list;
     let interval = [getDate(list[0]), getDate(list[list.length-1])]
-    timeScale.domain(interval).range([0, (interval[0]-interval[1])/(1000*60*60*24)*EM_PER_DAY]);
+    maxheight = (interval[0]-interval[1])/(1000*60*60*24);
+    timeScale.domain(interval).range([0, maxheight*EM_PER_DAY]);
 
     let dates = d3.timeDays(interval[1], interval[0]);
-    let markers = d3.select(".tile-grid").selectAll(".time").data(dates)
+    markers = d3.select(".tile-grid").selectAll(".time").data(dates)
     .enter().append("div");
 
     d3.selectAll(".avg-color").transition().duration(TRANS_LEN)
@@ -72,11 +84,10 @@ function update(data) {
     .transition().duration(TRANS_LEN)
     .style("opacity", 1);
 
-    let divs = d3.select(".tile-grid").selectAll(".tile").data(list)
+    tiles = d3.select(".tile-grid").selectAll(".tile").data(list)
     .enter().append("div");
-    console.log(divs.size());
 
-    divs.attr("class", "tile")
+    tiles.attr("class", "tile")
     .style("opacity", 1e-6)
     .style("width", (d,i) => {return d.text.length/280*95 + "%";})
     .style("top", (d,i) => {return timeScale(getDate(d)) + "em";})
@@ -86,11 +97,11 @@ function update(data) {
     .transition().duration(TRANS_LEN).delay(stagger(TRANS_DELAY))
     .style("opacity", 1);
 
-    divs.append("p")
+    tiles.append("p")
     .text((d,i)=>{return d.about.join()})
     .attr("class", "about");
 
-    divs.append("p")
+    tiles.append("p")
     .text((d,i)=>{return d.text})
     .attr("class", "content");
 }
@@ -98,8 +109,9 @@ function update(data) {
 function fetchnew(e) {
     console.log("fetch");
     let name = e.srcElement[0].value;
+    let request = (name.slice(0,1) == "@") ? "/getTimeline?name=" : "/getHashTag?hashtag=";
     Promise.all([
-        d3.json(BACKEND + "/getTimeline?name=" + name),
+        d3.json(BACKEND + request + escape(name)),
         new Promise(clear)
     ]).then((d) => {update(d[0])});
 }
@@ -110,6 +122,7 @@ function init() {
     document.getElementById("searchbar-text").addEventListener("click", (e) => {
         e.target.value = "@";
     });
+    zoom = d3.select(".tile-grid").call(d3.zoom().on("zoom", zoomed));
 }
 
 window.addEventListener("load", init);

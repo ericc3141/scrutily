@@ -15,6 +15,7 @@ html {
 body {
   min-height: 100%;
   width: 99%;
+  height: 100%;
   font-family: "Helvetica", "Arial", sans-serif;
 }
 
@@ -116,6 +117,7 @@ button {
  .tile-grid {
    position: relative;
    border-right: 3px dashed grey;
+   height: 100%;
  }
  
  .tile {
