@@ -93,7 +93,7 @@ input[type=text] {
    transition: height 0.1s, box-shadow 0.1s;
 }
 .clicked {
-  height: 10em;
+  height: 6em;
   z-index: 99;
 }
 .marker {
@@ -143,6 +143,6 @@ input[type=text] {
   left: 0;
   right: 0;
   margin:auto;
-  width: 80%;
+  width: 50%;
   border-radius: 2em;
 }
