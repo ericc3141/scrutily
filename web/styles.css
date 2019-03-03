@@ -123,6 +123,7 @@ button {
    left: 0;
    right: 0;
    margin: auto;
+   padding: 1px;
    height: 1em;
    border-radius: 0.5em;
    overflow: hidden;
@@ -148,14 +149,14 @@ button {
  .content {
   visibility: hidden;
   margin: 0px;
-  padding: 0px 0px 0px 2em;
+  padding: 0;
 }
 
 .about {
   visibility: hidden;
   font-weight: bold;
   margin: 0px;
-  padding: 0px 0px 0px 2em;
+  padding: 0;
 }
 
 .tile:hover .content, .clicked .content {
@@ -172,14 +173,14 @@ button {
 }
 
 .tile > p {
-  color: black;
+  color: white;
 }
 
 .tile:hover, .clicked {
   z-index: 99;
-  box-shadow: 7px 8px 5px 5px rgba(0,0,0,0.5);
-  border: 2px solid black;
-  /* filter:contrast(100%);
+  box-shadow: 3px 3px 5px 5px rgba(0,0,0,0.5);
+  /* border: 2px solid white;
+  filter:contrast(100%);
   filter: hue-rotate(45deg); */
 }
 

@@ -6,7 +6,7 @@ const TRANS_LEN = 500;
 const TRANS_DELAY = 10;
 let EM_PER_DAY = 10;
 // color value 1 - LIE / color value 2 - TRUTH
-let colorScale = d3.scaleSequential(d3.interpolateCubehelix("#FF9F90", "#D2FFAA")).domain([0.3,0.7]);
+let colorScale = d3.scaleSequential(d3.interpolateCubehelix("#FF9F90", "#A8FF9F")).domain([0.3,0.7]);
 // pleasant green-red scale
 // let colorScale = d3.scaleSequential(d3.interpolateCubehelix("#FF9F90", "#D2FFAA")).domain([0.3,0.7]);
 let timeScale = d3.scaleTime();
