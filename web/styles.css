@@ -1,9 +1,9 @@
-/* basics */
+/* THEME */
 
 @font-face {
-  font-family: 'Helvetica';
-  src: url(fonts/Helvetica.woff) format('woff');
-  src: url(fonts/Helvetica.ttf) format('truetype');
+    font-family: 'Helvetica';
+    src: url(fonts/Helvetica.woff) format('woff');
+    src: url(fonts/Helvetica.ttf) format('truetype');
 }
 
 :root {
@@ -12,99 +12,108 @@
     --gray: #AAA;
     --white: white;
 }
-.avg-color {
+.bubble {
     background-color: var(--gray);
     color: var(--white);
 }
 .tile > p {
-  color: var(--white);
+    color: var(--white);
 }
 
-html {
-  height: 100%;
-  width: 100%;
-  min-height: 100%;
-}
+/* LAYOUT */
 
+/* basic */
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
 body {
-  min-height: 100%;
-  width: 99%;
-  height: 100%;
-  font-family: "Helvetica", "Arial", sans-serif;
+    font-family: "Helvetica", "Arial", sans-serif;
+    margin: 0;
+    overflow: hidden;
+}
+.line {
+    visibility: hidden;
+    position: fixed;
+    left: 50%;
+    border-left: 1px solid var(--gray);
+    z-index: -99;
+    height: 100%;
 }
 
-/* header info:
-  h1 = big header (maybe title of webpage
-  h2 = sub-header (twitter user-name)
-  h3 = sub-sub-header (twitter words in tiles)
-*/
-h1, h2, h3 {
-  font-weight: normal;
-  margin: 0;
-  padding: 0 0 3vh 0;
-}
-h1 { font-size: 30px;}
-h2 { font-size: 24px;}
-h3 { font-size: 18px;}
-
-p { font-size: 14px;}
-
-.overall-layout {
-  height: 100%;
-  width: 100%;
-  text-align: center;
+h2 {
+    margin: 0;
 }
 
-/*
-.overall-layout > div {
-  border: 1px solid black;
+.bubble {
+    width: 60%;
+    max-width: 40rem;
+    border-radius: 2em;
+    padding: 0.2em 2em;
+    display: block;
+    margin: 0 auto;
+    box-sizing: border-box;
+    text-align: center;
 }
-*/
 
  /* text input field */
-input[type=text] {
-    margin: 0 auto;
-    display: block;
-  text-align: center;
-  padding: .2em;
-  border: none;
-  border-radius: 25px;
-  font-size: 24px;
+.header {
+    position:fixed;
+    top: 1vh;
+    z-index: 1;
+    width: 100%;
+}
+.footer {
+    position: fixed;
+    bottom: 1vh;
+    width: 100%;
 }
 
- .tile-grid {
-   position: relative;
-   height: 100%;
- }
+#searchbar {
+  font-size: 24px;
+  border: none;
+}
 
- .tile, .marker {
-   position: absolute;
-   left: 0; /* Centering hack */
-   right: 0;
-   margin: auto;
-   padding: 1px;
- }
+.wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.tile-grid {
+    position: relative;
+}
+
+.tile, .marker {
+    position: absolute;
+    left: 0; /* Centering hack */
+    right: 0;
+    margin: auto;
+    padding: 1px;
+}
  
 .tile {
-   height: 1em;
-   border-radius: 0.5em;
-   overflow: hidden;
-   /* margin-left: -0.2em; */
-   transition: height 0.1s, box-shadow 0.1s;
+    height: 1em;
+    border-radius: 0.5em;
+    overflow: hidden;
+    max-width: 99%;
+    transition: height 0.1s, box-shadow 0.1s;
 }
-.clicked {
-  height: 6em;
-  z-index: 99;
-}
+
 .marker {
    color: var(--gray);
    padding-left: 8vw;
    box-sizing: border-box;
+   width: 100%;
 }
 
 .tile:hover, .clicked {
     z-index: 1;
     box-shadow: 3px 3px 5px 5px rgba(0,0,0,0.1);
+}
+.clicked {
+  height: 6em;
+  z-index: 99;
 }
 
 
@@ -125,24 +134,4 @@ input[type=text] {
 
 .tile:hover .content, .clicked .content {
   visibility: visible;
-}
-
-
-.line {
-  visibility: hidden;
-  position: fixed;
-  left: 50%;
-  border-left: 1px solid var(--gray);
-  z-index: -99;
-  height: 100%;
-}
-
-.footer {
-  position: fixed;
-  bottom: 1vh;
-  left: 0;
-  right: 0;
-  margin:auto;
-  width: 50%;
-  border-radius: 2em;
 }

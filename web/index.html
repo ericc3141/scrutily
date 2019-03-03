@@ -5,43 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" charset="utf-8"/>
     <!-- loads general css stylesheet -->
     <link rel="stylesheet" href="styles.css">
-    <!-- loads desktop css stylesheet -->
-    <link rel="stylesheet" media="screen and (min-width: 800px)" href="desktop.css">
-    <!-- loads mobile css stylesheet -->
-    <link rel="stylesheet" media="screen and (max-width: 800px)" href="mobile.css">
     <!-- loads favicon-->
     <!--<link rel="shortcut icon" href="Favicon Link eingeben">-->
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="main.js"></script>
 </head>
 <body>
-    <div class="overall-layout">
-        <!-- background-line -->
-        <div class="line"></div>
+    <!-- background-line -->
+    <div class="line"></div>
 
-        <!-- title of web app 
-        <h1><b>Truth Twitter App</b></h1> -->
+    <!-- our search bar where we can enter the name
+        of a twitter user we want to read tweets from -->
+    <div class="header">
+        <h2><form method="post" id="user-form" action="javascript:void(0);">
+            <!-- text input field -->
+            <input type="text" value="@Twitter" class="bubble" id="searchbar">
+        </form></h2>
+    </div>
 
-        <!-- our search bar where we can enter the name
-            of a twitter user we want to read tweets from -->
-        <div class="searchbar"><h2>
-            <form method="post" id="user-form" action="javascript:void(0);">
-                <!-- text input field -->
-                <input type="text" value="@TrueTwitter" class="avg-color" id="searchbar-text">
-                <input type="submit" value="search" style="opacity: 0" />
-            </form>
-        </div>
+    <!-- this is where we put our fancy color
+    tiles with all the js stuff-->
+    <div class="wrapper"><div class="tile-grid">
+    </div></div>
 
-        <!-- this is where we put our fancy color
-        tiles with all the js stuff-->
-        <div class="tile-grid">
-        </div>
-
-        <!-- some information about us :)  -->
-        <div class="footer avg-color">
-            <p>proudly produced at HackTech 2019 by Eric, Fabian, Tejaswini and Vinuta :)</p> 
-        </div>
-
+    <!-- some information about us :)  -->
+    <div class="footer">
+        <p class="bubble" >Proudly produced at HackTech 2019 by Eric, Fabian, Tejaswini and Vinuta :)</p> 
     </div>
 </body>
 </html>

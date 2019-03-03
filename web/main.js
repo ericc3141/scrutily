@@ -38,6 +38,7 @@ function zoomed() {
     timeScale.range([0, maxheight*EM_PER_DAY*d3.event.transform.k]);
     tiles.style("top", (d,i) => {return timeScale(getDate(d)) + "em";});
     markers.style("top", (d,i) => {return timeScale(d) + "em";});
+    d3.select(".tile-grid").style("top", d3.event.transform.y + "px");
 }
 
 function toggleclick(d, i) {
@@ -73,7 +74,7 @@ function update(data) {
     markers = d3.select(".tile-grid").selectAll(".time").data(dates)
     .enter().append("div");
 
-    d3.selectAll(".avg-color").transition().duration(TRANS_LEN)
+    d3.selectAll(".bubble").transition().duration(TRANS_LEN)
     .style("background-color", colorScale(data.avg_t_value));
 
     d3.select(".line").style("visibility", "visible");
@@ -119,10 +120,10 @@ function fetchnew(e) {
 function init() {
     console.log("init");
     document.getElementById("user-form").addEventListener("submit", fetchnew);
-    document.getElementById("searchbar-text").addEventListener("click", (e) => {
+    document.getElementById("searchbar").addEventListener("click", (e) => {
         e.target.value = "@";
     });
-    zoom = d3.select(".tile-grid").call(d3.zoom().on("zoom", zoomed));
+    zoom = d3.select(".wrapper").call(d3.zoom().on("zoom", zoomed));
 }
 
 window.addEventListener("load", init);
