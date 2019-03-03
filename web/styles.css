@@ -172,14 +172,15 @@ button {
 }
 
 .tile > p {
-  color: white;
+  color: black;
 }
 
 .tile:hover, .clicked {
   z-index: 99;
   box-shadow: 7px 8px 5px 5px rgba(0,0,0,0.5);
-  /* filter:contrast(120%); */
-  filter: hue-rotate(45deg);
+  border: 2px solid black;
+  /* filter:contrast(100%);
+  filter: hue-rotate(45deg); */
 }
 
 .line {
