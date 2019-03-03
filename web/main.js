@@ -65,6 +65,7 @@ function update(data) {
     console.log("update");
     window.data = data;
 
+    d3.select(".wrapper").call(zoom.transform, d3.zoomIdentity);
     let list = data.tweet_list;
     let interval = [getDate(list[0]), getDate(list[list.length-1])]
     maxheight = (interval[0]-interval[1])/(1000*60*60*24);
@@ -109,6 +110,8 @@ function update(data) {
 
 function fetchnew(e) {
     console.log("fetch");
+    d3.selectAll(".bubble").transition().duration(TRANS_LEN)
+    .style("background-color", colorScale(0.7));
     let name = e.srcElement[0].value;
     let request = (name.slice(0,1) == "@") ? "/getTimeline?name=" : "/getHashTag?hashtag=";
     Promise.all([
@@ -123,7 +126,8 @@ function init() {
     document.getElementById("searchbar").addEventListener("click", (e) => {
         e.target.value = "@";
     });
-    zoom = d3.select(".wrapper").call(d3.zoom().on("zoom", zoomed));
+    zoom = d3.zoom().on("zoom", zoomed);
+    d3.select(".wrapper").call(zoom);
 }
 
 window.addEventListener("load", init);

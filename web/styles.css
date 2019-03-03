@@ -97,14 +97,13 @@ h2 {
     border-radius: 0.5em;
     overflow: hidden;
     max-width: 99%;
-    transition: height 0.1s, box-shadow 0.1s;
+    transition: width 0.1s, height 0.1s, box-shadow 0.1s;
 }
 
 .marker {
    color: var(--gray);
    padding-left: 8vw;
-   box-sizing: border-box;
-   width: 100%;
+   /* box-sizing: border-box; */
 }
 
 .tile:hover, .clicked {
@@ -112,7 +111,8 @@ h2 {
     box-shadow: 3px 3px 5px 5px rgba(0,0,0,0.1);
 }
 .clicked {
-  height: 6em;
+  width: 20em !important;
+  height: 10em;
   z-index: 99;
 }
 
@@ -125,10 +125,11 @@ h2 {
 }
 .content {
   visibility: hidden;
+  margin: 0.4em;
 }
 
 .tile:hover .about, .clicked .about {
-    padding-left: 0;
+    padding-left: 10%;
     transition-delay: .2s;
 }
 
