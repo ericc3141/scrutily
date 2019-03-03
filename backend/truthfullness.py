@@ -7,7 +7,7 @@ tokens = {}
 def get_value(text):
     #print(text)
     dirname = os.path.dirname(__file__)
-    filename = os.path.join(dirname, 'vanillamodel1.txt')
+    filename = os.path.join(dirname, 'vanillamodel.txt')
 
     percp=open(filename, 'r+')
     f=percp.read()
