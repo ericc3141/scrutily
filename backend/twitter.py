@@ -50,6 +50,14 @@ def getTimeline(screen_name):
             create_at['min'] = int(time[1])
             create_at['ss'] = int(time[2])
             t_value = truthfullness.get_value(text)
+            if(t_value == -99):
+                ret_tweet = {}
+                ret_tweet['error'] = 'Model file not found'
+                all_tweets.append(ret_tweet)
+                json_data = json.dumps(ret_tweet, ensure_ascii=False)
+                print('Error:Model file not found')
+                return json_data
+
             truth_value_sum+=t_value
             count+=1
             ret_tweet = {}
