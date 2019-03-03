@@ -87,7 +87,7 @@ def getTimeline(screen_name):
     auth=authenticate()
     api = tweepy.API(auth, wait_on_rate_limit=True)
     all_tweets = []
-    count =0;
+    count =1;
     truth_value_sum =0
     try:
         new_tweets = api.user_timeline(screen_name=screen_name,count = 1000,result_type='recent',tweet_mode='extended',since=earlier.strftime("%Y-%m-%d"))
