@@ -19,6 +19,10 @@ class MyHandler(SimpleHTTPRequestHandler):
             name = urlparse.parse_qs(parsed.query)["name"][0]
             content = twitter.getTimeline(name)
             self.respond(content)
+        elif (parsed.path == "/getHashTag"):
+            hashTag = urlparse.parse_qs(parsed.query)["hashtag"][0]
+            content = twitter.getHashtag(hashTag)
+            self.respond(content)
         else:
             super(MyHandler, self).do_GET()  # serves the static src file by default
 
