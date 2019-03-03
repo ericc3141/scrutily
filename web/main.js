@@ -16,6 +16,9 @@ function getDate(obj) {
     let t = obj.create_at;
     return new Date(t.yyyy, t.mm-1, t.dd, t.hh, t.min, t.ss);
 }
+function dateToStr(d) {
+    return (1900 + d.getYear()) + ", " + (d.getMonth() + 1) + "," + d.getDate();
+}
 
 function toggleclick(d, i) {
     if (lastClicked && lastClicked != this) {
@@ -35,6 +38,9 @@ function clear(data) {
     tiles.transition().duration(TRANS_LEN).delay(stagger(TRANS_DELAY))
         .style("opacity", 0)
         .remove();
+    d3.selectAll(".marker").transition().duration(TRANS_LEN)
+        .style("opacity", 0)
+        .remove();
 }
 function update(data) {
     console.log("update");
@@ -43,6 +49,17 @@ function update(data) {
     let interval = [getDate(data[0]), getDate(data[data.length-1])]
     timeScale.domain(interval).range([0, (interval[0]-interval[1])/(1000*60*60*24)*EM_PER_DAY]);
     colorScale.domain([0,data.length]);
+
+    let dates = d3.timeDays(interval[1], interval[0]);
+    let markers = d3.select(".tile-grid").selectAll(".time").data(dates)
+    .enter().append("div");
+
+    markers.attr("class", "marker")
+    .style("top", (d,i) => {return timeScale(d) + "em";})
+    .text((d,i) => {return dateToStr(d);})
+    .style("opacity", 1e-6)
+    .transition().duration(TRANS_LEN)
+    .style("opacity", 1);
 
     let divs = d3.select(".tile-grid").selectAll(".tile").data(data)
     .enter().append("div");
