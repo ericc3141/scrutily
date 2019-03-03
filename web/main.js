@@ -1,9 +1,11 @@
 "use strict";
 
 const BACKEND = "http://localhost:8888";
-let EM_PER_DAY = 1;
-let colorScale = d3.scaleSequential(d3.interpolateWarm);
+let EM_PER_DAY = 10;
+let colorScale = d3.scaleSequential(d3.interpolateCubehelix("#85CCBE", "#FF94D2"));
+// let colorScale = d3.scaleSequential(d3.interpolateCubehelix("#369986", "#C985CC"));
 let timeScale = d3.scaleTime();
+let lastClicked;
 
 function stagger(total) {
     return (d,i) => {return total/(i+1);};
@@ -14,10 +16,19 @@ function getDate(obj) {
 }
 
 function toggleclick(d, i) {
+    if (lastClicked && lastClicked != this) {
+        lastClicked.classList.remove("clicked");
+    }
     this.classList.toggle("clicked");
+    lastClicked = this;
 }
 
 function clear(data) {
+    let tiles = d3.selectAll(".tile");
+    if (tiles.size() === 0) {
+        update(data);
+        return;
+    }
     setTimeout(()=>{update(data)}, 2000);
     d3.selectAll(".tile")
         .transition().duration(500).delay(stagger(1000))
