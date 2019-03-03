@@ -14,7 +14,7 @@ html {
 
 body {
   min-height: 100%;
-  width: 95%;
+  width: 99%;
   font-family: "Helvetica", "Arial", sans-serif;
 }
 
@@ -70,11 +70,11 @@ row 6: tile grid
   text-align: center;
 }
 
-
+/*
 .overall-layout > div {
   border: 1px solid black;
 }
-
+*/
 
 .searchbar {
   margin: 0px;
@@ -88,8 +88,6 @@ input[type=text] {
   margin: 0px;
   padding: 3px;
   padding-left: 2vw;
-  background-color: rgb(54, 153, 134);
-  color: white;
   border: none;
   border-radius: 25px;
   font-size: 24px;
@@ -121,7 +119,6 @@ button {
  }
  
  .tile {
-   background-color: rgb(54, 153, 134);
    position: absolute;
    left: 0;
    right: 0;
@@ -131,14 +128,19 @@ button {
    overflow: hidden;
  }
 
- 
  .marker {
    position: absolute;
    right: 0;
    width: 100%;
    text-align: center;
-   border-top: 1px solid #bbb;
    color: #bbb;
+   padding-left: 6vw;
+   box-sizing: border-box;
+ }
+
+ .avg-color {
+   background-color: lightgrey;
+   color: white;
  }
 
 /* tile information display */
@@ -181,18 +183,18 @@ button {
 }
 
 .line {
+  visibility: hidden;
   position: fixed;
   left: 0;
   right: 0;
   margin: auto;
+  border: 1px solid lightgrey;
   z-index: -99;
-  border-left: 1px rgb(177, 177, 177);
-  width: 0px;
+  width: 0;
   height: 100%;
 }
 
 .footer {
-  background-color: rgb(54, 153, 134);
   bottom: 0;
   left: 0;
   right: 0;

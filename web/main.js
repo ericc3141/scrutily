@@ -1,10 +1,11 @@
 "use strict";
 
 const BACKEND = "http://localhost:8888";
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 const TRANS_LEN = 500;
 const TRANS_DELAY = 10;
-let EM_PER_DAY = 50;
-let colorScale = d3.scaleSequential(d3.interpolateCubehelix("#85CCBE", "#FF94D2")).domain([0,1]);
+let EM_PER_DAY = 10;
+let colorScale = d3.scaleSequential(d3.interpolateCubehelix("#B9FFC4", "#C9AFCC")).domain([0,1]);
 // let colorScale = d3.scaleSequential(d3.interpolateCubehelix("#369986", "#C985CC"));
 let timeScale = d3.scaleTime();
 let lastClicked;
@@ -17,7 +18,7 @@ function getDate(obj) {
     return new Date(t.yyyy, t.mm-1, t.dd, t.hh, t.min, t.ss);
 }
 function dateToStr(d) {
-    return (1900 + d.getYear()) + ", " + (d.getMonth() + 1) + "," + d.getDate();
+    return (MONTHS[d.getMonth()]) + " " + d.getDate();
 }
 function getDate(obj) {
     let t = obj.create_at;
@@ -58,8 +59,10 @@ function update(data) {
     let markers = d3.select(".tile-grid").selectAll(".time").data(dates)
     .enter().append("div");
 
-    d3.select("#searchbar-text").transition().duration(TRANS_LEN)
+    d3.selectAll(".avg-color").transition().duration(TRANS_LEN)
     .style("background-color", colorScale(data.avg_t_value));
+
+    d3.select(".line").style("visibility", "visible");
 
     markers.attr("class", "marker")
     .style("top", (d,i) => {return timeScale(d) + "em";})
