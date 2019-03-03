@@ -1,10 +1,11 @@
-import twitter
+from backend import twitter
 import time
 from http.server import SimpleHTTPRequestHandler, HTTPServer
 import urllib.parse as urlparse
+import os
 
 HOST_NAME = '0.0.0.0'
-PORT_NUMBER = 8888
+PORT_NUMBER = os.environ["PORT"] or 8888 
 
 class MyHandler(SimpleHTTPRequestHandler):
     def do_HEAD(self):
@@ -37,8 +38,7 @@ class MyHandler(SimpleHTTPRequestHandler):
         self.wfile.write(response)
 
 
-# This is the main method that will fire off the server.
-if __name__ == '__main__':
+def main():
     server_class = HTTPServer
     httpd = server_class((HOST_NAME, PORT_NUMBER), MyHandler)
     print(time.asctime(), 'Server Starts - %s:%s' % (HOST_NAME, PORT_NUMBER))
@@ -48,3 +48,7 @@ if __name__ == '__main__':
         pass
     httpd.server_close()
     print(time.asctime(), 'Server Stops - %s:%s' % (HOST_NAME, PORT_NUMBER))
+
+# This is the main method that will fire off the server.
+if __name__ == '__main__':
+    main()
