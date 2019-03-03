@@ -3,8 +3,8 @@
 const BACKEND = "http://localhost:8888";
 const TRANS_LEN = 500;
 const TRANS_DELAY = 10;
-let EM_PER_DAY = 10;
-let colorScale = d3.scaleSequential(d3.interpolateCubehelix("#85CCBE", "#FF94D2"));
+let EM_PER_DAY = 50;
+let colorScale = d3.scaleSequential(d3.interpolateCubehelix("#85CCBE", "#FF94D2")).domain([0,1]);
 // let colorScale = d3.scaleSequential(d3.interpolateCubehelix("#369986", "#C985CC"));
 let timeScale = d3.scaleTime();
 let lastClicked;
@@ -50,13 +50,16 @@ function update(data) {
     console.log("update");
     window.data = data;
 
-    let interval = [getDate(data[0]), getDate(data[data.length-1])]
+    let list = data.tweet_list;
+    let interval = [getDate(list[0]), getDate(list[list.length-1])]
     timeScale.domain(interval).range([0, (interval[0]-interval[1])/(1000*60*60*24)*EM_PER_DAY]);
-    colorScale.domain([0,data.length]);
 
     let dates = d3.timeDays(interval[1], interval[0]);
     let markers = d3.select(".tile-grid").selectAll(".time").data(dates)
     .enter().append("div");
+
+    d3.select("#searchbar-text").transition().duration(TRANS_LEN)
+    .style("background-color", colorScale(data.avg_t_value));
 
     markers.attr("class", "marker")
     .style("top", (d,i) => {return timeScale(d) + "em";})
@@ -65,7 +68,7 @@ function update(data) {
     .transition().duration(TRANS_LEN)
     .style("opacity", 1);
 
-    let divs = d3.select(".tile-grid").selectAll(".tile").data(data)
+    let divs = d3.select(".tile-grid").selectAll(".tile").data(list)
     .enter().append("div");
     console.log(divs.size());
 
@@ -73,7 +76,7 @@ function update(data) {
     .style("opacity", 1e-6)
     .style("width", (d,i) => {return d.text.length/280*95 + "%";})
     .style("top", (d,i) => {return timeScale(getDate(d)) + "em";})
-    .style("background-color", (d,i) => {return colorScale(i);})
+    .style("background-color", (d,i) => {return colorScale(d.truth_score);})
     .style("color", (d,i) => {return colorScale(i);})
     .on("click", toggleclick)
     .transition().duration(TRANS_LEN).delay(stagger(TRANS_DELAY))
