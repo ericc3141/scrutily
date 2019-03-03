@@ -110,6 +110,7 @@ button {
  .tile-grid {
    flex-grow: 1;
    position: relative;
+   border-right: 3px dashed grey;
  }
  
  .tile {
@@ -155,6 +156,7 @@ button {
 
 .tile:hover, .clicked {
   z-index: 99;
+  box-shadow: 7px 8px 5px 5px rgba(0,0,0,0.5);
 }
 
 .footer {
