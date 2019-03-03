@@ -21,8 +21,10 @@ function update(data) {
     d3.select(".tile-grid").selectAll(".tile").data(data)
     .enter().append("div")
     .attr("class", "tile")
-    .text((d) => {return d.text})
+//     .text((d) => {return d.about.join();})
     .style("opacity", 1e-6)
+    .style("width", (d,i) => {return d.text.length + "px";})
+    .style("top", (d,i) => {let time = d.create_at; return 100/24*time.hh + 100/24/60*time.min + "%";})
     .style("background-color", (d,i) => {return colorScale(i);})
     .transition().duration(500).delay(stagger(1000))
     .style("opacity", 1);

@@ -16,7 +16,6 @@ body {
   width: 100%;
   margin: 0;
   font-family: "Helvetica", "Arial", sans-serif;
-  text-align: center;
 }
 
 /* header info:
@@ -87,22 +86,23 @@ button {
   cursor: pointer;
 }
 */
+
+.overall-layout {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
  
  .tile-grid {
-   display: flex;
-   flex-wrap: wrap;
-   text-align: center;
-   justify-content: center;
-   width: 100%;
+   flex-grow: 1;
+   overflow: scroll;
+   position: relative;
  }
  
  .tile {
-   flex: 1;
    background-color: rgb(54, 153, 134);
-   min-height: 150px;
-   min-width: 150px;
-   max-height: 150px;
-   max-width: 150px;
-   margin: .2em;
-   border-radius: .2em;
+   position: absolute;
+   left: 0;
+   height: 1em;
+   border-radius: 0.5em;
  }
