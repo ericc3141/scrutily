@@ -180,6 +180,17 @@ button {
   filter: hue-rotate(45deg);
 }
 
+.line {
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: -99;
+  border-left: 1px rgb(177, 177, 177);
+  width: 0px;
+  height: 100%;
+}
+
 .footer {
   background-color: rgb(54, 153, 134);
   bottom: 0;
@@ -192,6 +203,6 @@ button {
   color: white;
   margin-top: 5vh;
   margin-bottom: 1vh;
-  /* width: 100%; */
+  width: 40%;
   border-radius: 2em;
 }
