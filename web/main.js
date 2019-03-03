@@ -13,6 +13,7 @@ let timeScale = d3.scaleTime();
 let elems = [];
 let tiles, markers;
 let zoom, maxheight;
+let lastClicked;
 
 function stagger(delay) {
     return (d,i) => {return i * delay;};
@@ -92,7 +93,6 @@ function update(data) {
     .style("width", (d,i) => {return d.text.length/280*95 + "%";})
     .style("top", (d,i) => {return timeScale(getDate(d)) + "em";})
     .style("background-color", (d,i) => {return colorScale(d.truth_score);})
-    .style("color", (d,i) => {return colorScale(i);})
     .on("click", toggleclick)
     .transition().duration(TRANS_LEN).delay(stagger(TRANS_DELAY))
     .style("opacity", 1);

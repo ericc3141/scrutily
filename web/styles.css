@@ -6,6 +6,20 @@
   src: url(fonts/Helvetica.ttf) format('truetype');
 }
 
+:root {
+    --theme1: #FF9F90;
+    --theme2: #D2FFAA;
+    --gray: #AAA;
+    --white: white;
+}
+.avg-color {
+    background-color: var(--gray);
+    color: var(--white);
+}
+.tile > p {
+  color: var(--white);
+}
+
 html {
   height: 100%;
   width: 100%;
@@ -24,47 +38,17 @@ body {
   h2 = sub-header (twitter user-name)
   h3 = sub-sub-header (twitter words in tiles)
 */
-
-h1 {
-  font-size: 30px;
+h1, h2, h3 {
   font-weight: normal;
-  color: rgb(54, 153, 134);
-  margin: 0px;
-  padding-top: 3vh;
-  padding-bottom: 0px;
+  margin: 0;
+  padding: 0 0 3vh 0;
 }
+h1 { font-size: 30px;}
+h2 { font-size: 24px;}
+h3 { font-size: 18px;}
 
-h2 {
-  font-size: 24px;
-  font-weight: normal;
-}
+p { font-size: 14px;}
 
-h3 {
-  font-size: 18px;
-  font-weight: normal;
-}
-
-p {
-  font-size: 14px;
-}
-
-
-
-/* DIV LAYOUT PROPERTIES (GRID POSITIONING) */
-
-/*
--- COLUMNS --
-column 1: whitespace left
-column 2: content
-column 3: whitespace right
--- ROWS --
-row 1: whitespace to top of site
-row 2: page title
-row 3: for searchbar
-row 4: for username
-row 5: whitespace to tile grid
-row 6: tile grid
-*/
 .overall-layout {
   height: 100%;
   width: 100%;
@@ -77,138 +61,88 @@ row 6: tile grid
 }
 */
 
-.searchbar {
-  margin: 0px;
-  padding-top: 0px;
-  text-align: center;
-}
-
  /* text input field */
 input[type=text] {
+    margin: 0 auto;
+    display: block;
   text-align: center;
-  margin: 0px;
-  padding: 3px;
-  padding-left: 2vw;
+  padding: .2em;
   border: none;
   border-radius: 25px;
   font-size: 24px;
 }
 
-/* search button 
-button {
-  text-align: center;
-  background-color: rgb(54, 153, 134);;
-  color: white;
-  border: none;
-  border-radius: 25px;
-  font-size: 12px;
-  cursor: pointer;
-}
-*/
-
- /*
- .wrapper {
-     flex-grow: 1;
-     overflow: auto;
-     margin-bottom: 5em;
- }
- */
-
  .tile-grid {
    position: relative;
-   border-right: 3px dashed grey;
    height: 100%;
  }
- 
- .tile {
+
+ .tile, .marker {
    position: absolute;
-   left: 0;
+   left: 0; /* Centering hack */
    right: 0;
    margin: auto;
    padding: 1px;
+ }
+ 
+.tile {
    height: 1em;
    border-radius: 0.5em;
    overflow: hidden;
- }
-
- .marker {
-   position: absolute;
-   right: 0;
-   width: 100%;
-   text-align: center;
-   color: #bbb;
-   padding-left: 6vw;
+   /* margin-left: -0.2em; */
+   transition: height 0.1s, box-shadow 0.1s;
+}
+.clicked {
+  height: 10em;
+  z-index: 99;
+}
+.marker {
+   color: var(--gray);
+   padding-left: 8vw;
    box-sizing: border-box;
- }
-
- .avg-color {
-   background-color: lightgrey;
-   color: white;
- }
-
-/* tile information display */
-
- .content {
-  visibility: hidden;
-  margin: 0px;
-  padding: 0;
 }
 
-.about {
+.tile:hover, .clicked {
+    z-index: 1;
+    box-shadow: 3px 3px 5px 5px rgba(0,0,0,0.1);
+}
+
+
+/* tile information display */
+.about{
+    margin:0;
+    padding-left: 100%;
+    transition: padding-left 0.1s ease;
+}
+.content {
   visibility: hidden;
-  font-weight: bold;
-  margin: 0px;
-  padding: 0;
+}
+
+.tile:hover .about, .clicked .about {
+    padding-left: 0;
+    transition-delay: .2s;
 }
 
 .tile:hover .content, .clicked .content {
   visibility: visible;
 }
 
-.tile:hover .about, .clicked .about {
-  visibility: visible;
-}
-
-.clicked {
-  height: 75px;
-  z-index: 99;
-}
-
-.tile > p {
-  color: white;
-}
-
-.tile:hover, .clicked {
-  z-index: 99;
-  box-shadow: 3px 3px 5px 5px rgba(0,0,0,0.5);
-  /* border: 2px solid white;
-  filter:contrast(100%);
-  filter: hue-rotate(45deg); */
-}
 
 .line {
   visibility: hidden;
   position: fixed;
-  left: 0;
-  right: 0;
-  margin: auto;
-  border: 1px solid lightgrey;
+  left: 50%;
+  border-left: 1px solid var(--gray);
   z-index: -99;
-  width: 0;
   height: 100%;
 }
 
 .footer {
-  bottom: 0;
+  position: fixed;
+  bottom: 1vh;
   left: 0;
   right: 0;
   margin:auto;
-  line-height: 0;
-  position: fixed;
-  text-align: center;
-  color: white;
-  margin-top: 5vh;
-  margin-bottom: 1vh;
-  width: 40%;
+  width: 80%;
   border-radius: 2em;
 }
