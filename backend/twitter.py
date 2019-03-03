@@ -2,8 +2,8 @@ import tweepy
 from tweepy import OAuthHandler
 import re
 import json
-from backend import summarizer
-from backend import truthfullness
+import summarizer
+import truthfullness
 import nltk
 import datetime
 
@@ -29,7 +29,7 @@ def getHashtag(hashTag):
         count = 1;
         truth_value_sum = 0
         try:
-            for tweet in api.search(q='#'+hashTag,count = 1000,result_type='recent',tweet_mode='extended'):
+            for tweet in api.search(q=hashTag,count = 1000,result_type='recent',tweet_mode='extended'):
                 created_at = str(tweet.created_at).split(' ')
                 date = created_at[0].split('-')
                 time = created_at[1].split(':')
